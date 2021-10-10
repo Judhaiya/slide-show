@@ -6,36 +6,69 @@
 body{
     display:flex;
     justify-content: center;
+    background-color:#d0f0c0;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
    
   }
-  .heading{
-      margin-top:2em;
-      text-align: center;
+  .exptrack-heading{
+      margin-top:1rem;
+      font-family: 'Birthstone', cursive;
+      font-size: 35px;
   }
-  .slideshow-container {
-     margin-top:2.5em;
-     animation-name:fade;
-     animation-duration:1.5s ;
+  .transaction-input{
+      background-color: honeydew;
+      margin-top:2rem;
+      padding:2rem;
   }
-.pic{
-    width:300px;
-    height:300px;
-   
-}
+  .balance{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+  }
+ 
 .button-container{
     display:flex;
     align-content: center;
     justify-content: center;
 }
-.prev,.next{
-    padding:5px;
-    background-color: rgb(217, 255, 127);
+.calculation-area{
+    margin:0.2rem;
+}
+.expensegreen{
+    background-color:#50c878;
+}
+.expensered{
+    background-color: #ea3c53;
+}
+input{
     border:none;
     outline:none;
-    box-shadow: 10px 10px 69px 0px rgba(168, 168, 168, 0.75)
+    height:30px;
+    margin-right: 0.4rem;
 }
-.prev{
-    margin-right:10px;
+button{
+    margin-right:0.4rem;
+}
+.add{
+    background-color:#74c365 ;
+    border:none;
+    outline:none;
+    padding:0.2rem;
+    color:#fff;
+}
+.remove{
+    background-color:#ff5349 ;
+    border:none;
+    outline:none;
+    padding:0.2rem;
+    color:#fff;
+}
+.Transaction-item{
+    
+    margin:1rem;
+}
+.expensegreen,.expensered{
+    padding:1rem;
 }
 @media only screen and (min-width:900px){
     body{

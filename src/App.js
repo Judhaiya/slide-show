@@ -1,49 +1,125 @@
 import React,{useState} from "react";
 import './App.css';
-import Painting from "./components/green.jpg";
-import Mask from "./components/sea.jpg";
-import Stud from "./components/bridge.jpg";
+import Transaction from "./components/Transaction"
+
 
 function App() {
   
-const [Img,setImg]=useState(0)
 
-const next = ()=>{
-   setImg(Img+1)
+const[inputValue,setInputValue]=useState('');
+const[transactOutput,setTransactOutput]=useState([])
+const[totalValue,setTotalValue]=useState('')
+const [addItems,setAddItems]=useState([])
+const [subtractItems,setSubtractItems]=useState([])
+const [showBothItems,setShowBothItems]=useState([])
+
+// useEffect(() => {
+ 
+// }, [])
+// const expense=JSON.parse(localStorage.getItem('expenseItems'))
+// if(data==""){
+//  localStorage.setItem('expenseItems', JSON.stringify(showBothItems));
+// }
+// else{
+//   showBothItems.push(data)
+//   localStorage.setItem('expenseItems', JSON.stringify(showBothItems));
+// }
+
+// let data;
+// let array;
+// if(JSON.parse(localStorage.getItem('expenseItems'))===null){
+//   localStorage.setItem('expenseItems', JSON.stringify(showBothItems))
+// }else{
+//    array=JSON.parse(localStorage.getItem('expenseItems'))
+//   data=[...array,showBothItems]
+//   localStorage.setItem('expenseItems', JSON.stringify(array))
+// }
+const handleAdd=(e)=>{
+  e.preventDefault()
+  
+ if(inputValue!==''){
+  setTotalValue(Number(...transactOutput)+Number(inputValue))
+   setTransactOutput([...transactOutput,inputValue]);
+   setTotalValue(Number(...transactOutput)+ Number(inputValue))
+   let expenseNegative={
+    category:'Add',
+    value:inputValue,
+    curTime:new Date().toLocaleString()
+   
+   }
+   setAddItems([...addItems,expenseNegative])
+   setShowBothItems([...showBothItems,expenseNegative])
+   console.log(transactOutput)
+   
+ }
+ 
+ 
+
+  setInputValue('')
+}
+
+const handleSubtract=(e)=>{
+  e.preventDefault()
+  
+  if(inputValue!==''){
+    setTotalValue(Number(...transactOutput)-Number (inputValue))
+    setTransactOutput([...transactOutput,inputValue]);
+    setTotalValue(Number(...transactOutput)-Number (inputValue))
+   let expenseNegative={
+     category:'subtract',
+     value:inputValue,
+     curTime:new Date().toLocaleString()
+
+    }
+    setSubtractItems([...subtractItems,expenseNegative])
+    setShowBothItems([...showBothItems,expenseNegative])
+
+    console.log(transactOutput)
     
-}
-const prev =() => {
-    setImg(Img-1)
-}
+  }
+  
+  
+ 
+   setInputValue('')
+  //  const data=JSON.parse(localStorage.getItem('expenseItems'))
+  //  if(!data){
+  //   localStorage.setItem('expenseItems', JSON.stringify(showBothItems));
+  //  }
+ }
 
-
-const Images =
-    [Painting,Mask,Stud]
 
  
 return(
     <>
-    <div className="heading">
-        <h3>Slideshow</h3>
-    </div>
-<div className="slideshow-container">
-   <div className="img-box">
-   <img  src={Images[Img]} alt="" className="pic"/>
-  </div>
-  <div className="button-container">
-    <button onClick={Img<0?setImg(Images.length-1):prev
-    } className="prev">Prev</button>
-    <button onClick={Img>Images.length-1?setImg(0):next} className="next">Next</button>
-    </div>
-    <div className="credits">
-    <p>Photo by <a href="https://unsplash.com/@editholic7?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kunal Shinde</a> on <a href="https://unsplash.com/s/photos/nature?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
-  </p>
-  <p>Photo by <a href="https://unsplash.com/@draufsicht?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Andreas Gücklhorn</a> on <a href="https://unsplash.com/s/photos/nature?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
-  </p>
-  <p>Photo by <a href="https://unsplash.com/@timswaanphotography?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Tim Swaan</a> on <a href="https://unsplash.com/s/photos/nature?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></p>
-  </div>
+     <h3  className="exptrack-heading">Expense Tracker</h3>
+   <div className="transaction-input">
+     <h3 className="balance">Balance:{totalValue} </h3>
+     <div className="calculation-area">
+      <input type="number" value={inputValue} onChange={(e)=>setInputValue(e.target.value)} />
+       <button className="add" onClick={handleAdd}>Add</button>
+       <button  className="remove" onClick={handleSubtract}>Remove</button>
+       </div>
+   </div>
+   <div className="transaction-output">
+      {/*dynamic portion */}
+     
+     {/* <p>addItems + {addItems}</p>
+     <p> subItems + {subtractItems}</p>
+  */}
     
-    </div>
+  
+    {showBothItems.map(item=>(
+      <>
+    {/* <p>{item.value}</p>
+    <p>{item.category}</p>
+    <p>{item.curTime}</p> */}
+    <Transaction item={item}/>
+    </>
+    ))}
+   
+    
+   </div>
+
     </>
 )
 }
