@@ -8,6 +8,6 @@
  6. Made use of dynamic classes to implement css styles
 
  #### demo for the project
- [React expense tracker](https://react-expense-tracker-12345.netlify.app/)
+ [React expense tracker](https://updatedexpensetrack.netlify.app/)
   
 
