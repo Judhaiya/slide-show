@@ -7,7 +7,7 @@ function App() {
   
 
 const[inputValue,setInputValue]=useState('');
-const[transactOutput,setTransactOutput]=useState([])
+// const[transactOutput,setTransactOutput]=useState([])
 const[totalValue,setTotalValue]=useState('')
 const [addItems,setAddItems]=useState([])
 const [subtractItems,setSubtractItems]=useState([])
@@ -38,9 +38,9 @@ const handleAdd=(e)=>{
   e.preventDefault()
   
  if(inputValue!==''){
-  setTotalValue(Number(...transactOutput)+Number(inputValue))
-   setTransactOutput([...transactOutput,inputValue]);
-   setTotalValue(Number(...transactOutput)+ Number(inputValue))
+ 
+  //  setTransactOutput([...transactOutput,inputValue]);
+   setTotalValue(Number(totalValue)+ Number(inputValue))
    let expenseNegative={
     category:'Add',
     value:inputValue,
@@ -49,7 +49,7 @@ const handleAdd=(e)=>{
    }
    setAddItems([...addItems,expenseNegative])
    setShowBothItems([...showBothItems,expenseNegative])
-   console.log(transactOutput)
+  //  console.log(transactOutput)
    
  }
  
@@ -62,9 +62,9 @@ const handleSubtract=(e)=>{
   e.preventDefault()
   
   if(inputValue!==''){
-    setTotalValue(Number(...transactOutput)-Number (inputValue))
-    setTransactOutput([...transactOutput,inputValue]);
-    setTotalValue(Number(...transactOutput)-Number (inputValue))
+   
+    // setTransactOutput([...transactOutput,inputValue]);
+    setTotalValue(Number(totalValue)-Number(inputValue))
    let expenseNegative={
      category:'subtract',
      value:inputValue,
@@ -74,7 +74,7 @@ const handleSubtract=(e)=>{
     setSubtractItems([...subtractItems,expenseNegative])
     setShowBothItems([...showBothItems,expenseNegative])
 
-    console.log(transactOutput)
+    // console.log(transactOutput)
     
   }
   
